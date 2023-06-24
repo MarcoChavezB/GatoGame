@@ -1,62 +1,70 @@
 <template>
   <div class="app">
     <div class="content">
-      <div class="info">
+      <div class="content" :class="{'opacidad':aplicarOpacidad}">
         <!--Encabezado o etiqueta de informacion-->
-        <CardInfo />
+        
       </div>
-      <div class="panel">
+      <div class="panel" :class="{'panel-juego':aplicarOpacidad}">
         <!--Panel de juego-->
-        <PanelButton />
+        <PanelButton :nombreX ="nombreX" :nombreO="nombreO"/>
       </div>
-      <div class="history">
+      <div class="history" :class="{'opacidad':aplicarOpacidad}">
         <!--etiqueta historial-->
-        <HistoryCard />
       </div>
     </div>
-    <div class="msg">
+    <div class="msg" :class="{'opacidad':aplicarOpacidad}">
       <!--Mensajes de perdedor o ganador-->
     </div>
     <!--Menu para iniciar el juego-->
     <div class="menu-inicial">
-      <GameMenu @escucharHijo="ocultarHijo"/>
+      <GameMenu @botonClic="() => ocultar()"/>
     </div>
   </div>
 </template>
 
 <script setup>
-import HistoryCard from './components/HistoryCard'
-import WinnerMessage from './components/WinnerMessage'
-import LooseMessage from './components/LooseMessage'
+//import WinnerMessage from './components/WinnerMessage'
+//import LooseMessage from './components/LooseMessage'
 import PanelButton from './components/PanelButton'
-import CardInfo from './components/CardInfo'
 import GameMenu from './components/GameMenu'
+import {ref} from 'vue';
 
-let ocultar = false 
 
-const ocultarHijo = (value) =>{
-  this.ocultar = value
+
+
+var aplicarOpacidad = ref(true);
+var panelOpacidad = ref(false);
+var nombreX = ref('')
+var nombreO = ref('')
+
+// funcion de escucha para el componente hijo al padre
+const ocultar = () => {
+  //logica de cuando se clikeo el boton del hijo
+  aplicarOpacidad.value = false;
+  panelOpacidad.value = true;
+  console.log('opacidad funcionando')
 }
 
 </script>
 
 <style scoped>
 
-.info, .panel, .history, .msg{
+/*Estilo de tipo booleano*/ 
+.opacidad{
   opacity: 0.3;
 }
-.panel{
+
+.panel-juego{
+  position: relative;
+  opacity: 0.3;
   z-index: -1;
 }
+
+
 .menu-inicial{
   margin-top: -48em;
-  margin-right: -1.5em;
- 
-}
-.history{
-  margin-left: 30px;
-  margin-top: 99px;
-  
+  margin-right: -2.5em;
 }
 
 .content{

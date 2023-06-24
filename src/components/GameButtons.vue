@@ -1,11 +1,11 @@
 <template>
     <div class="btn">
-        <button @click="cambio" :class="{ active:animacion }">{{ texto }}</button>
+        <button @click="animacionEvent(); emisor()" :class="{ active:animacion }">{{ texto }}</button>
     </div>
 </template>
 
 <script setup>
-import {defineProps, ref} from 'vue'
+import {defineProps, ref, defineEmits} from 'vue'
 
 defineProps({
     texto:{
@@ -21,8 +21,7 @@ defineProps({
 })
 
 const animacion = ref (false)
-
-const cambio = (posicion) => {
+const animacionEvent = (posicion) => {
   console.log('btn clic', posicion)
   animacion.value = true;
 
@@ -30,6 +29,15 @@ const cambio = (posicion) => {
     animacion.value = false;
   }, 1000);
 }
+
+const emit = defineEmits(['turno']);
+
+const emisor = () => {
+  emit('turno');
+  console.log('emitiendo señal')
+}
+
+
 
 </script>
 

@@ -8,12 +8,19 @@
             <h1>Tomo la partida</h1>
         </div>
         <div class="btns">
-            <button class="quitar">Quitar</button>
+            <button class="quitar" @click="recargar" >Quitar</button>
             <button class="siguiente">Siguiente ronda</button>
         </div>
     </div>
   </template>
 
+<script setup>
+
+const recargar = () =>{
+    location.reload()
+}
+
+</script>
 <style scoped>
 .et{
     align-items: center;

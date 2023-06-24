@@ -2,24 +2,51 @@
     <div class="his">
         <div class="playerX">
             <div class="content">
-                <p>Marco</p>
-                <h4>0</h4>
+                <p>{{ nombreX }}</p>
+                <h4>{{ marcadorA }}</h4>
             </div>
         </div>
         <div class="partidas">
             <div class="content">
                 <p>N partidas</p>
-                <h4>0</h4>
+                <h4>{{ marcadorB }}</h4>
             </div>
         </div>
         <div class="playerO">
             <div class="content">
-                <p>Jugador</p>
-                <h4>0</h4>
+                <p>{{ nombreO }}</p>
+                <h4>{{ marcadorC }}</h4>
             </div>
         </div>
     </div>
 </template>
+
+<script setup>
+import {defineProps} from 'vue'
+
+defineProps({
+    marcadorA:{
+        type: Number,
+        default: 0
+    },
+    marcadorB:{
+        type: Number,
+        default: 0
+    },
+    marcadorC:{
+        type: Number,
+        default: 0
+    },
+    nombreX:{
+        type: String,
+        default: "Default",
+    },
+    nombreO:{
+        typeof: String,
+        default: "Default",
+    }
+})
+</script>
 
 <style setuo>
 .his{

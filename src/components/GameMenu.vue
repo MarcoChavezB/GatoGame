@@ -10,22 +10,24 @@
                 <h1>Nombre de jugadores</h1>
             </div>
             <div class="inputs">
-                <input type="text" name="jugadorX" id="1" placeholder="X">
-                <input type="text" name="jugadorO" id="2" placeholder="O">
+                <input type="text" v-model="nombreX" name="jugadorX" id="1" placeholder="X">
+                <input type="text" v-model="nombreO" name="jugadorO" id="2" placeholder="O">
             </div>
             <div class="inf">
                 <p>Se reflegara el nombre de cada jugador</p>
             </div>
         </div>
-
+        
         <div class="btns">
-            <button @click="ocultar(false); emitir() ">Continuar</button>
+            <button @click="ocultar(false); emisor(); mandarNombres()">Continuar</button>
+            
         </div>
     </div>
 </template>
 
 <script setup>
 import {ref} from 'vue'
+import {defineEmits} from 'vue'
 
 const ocultarMenu = ref(true);
 
@@ -35,9 +37,19 @@ const ocultar = () =>{
     }
 }
 
-// ejecucion del emit
-const emitir = () =>{
-    this.$emit('ocultarHijo')
+// manera correcta de definir emits de hijo a padre
+const emit = defineEmits(['botonClic'])
+
+var nombreX = ref('');
+var nombreO = ref('');
+
+const mandarNombres = () => {
+  emit('botonClic', nombreX.value, nombreO.value);
+  console.log('se mandaron los nombres', nombreX.value, nombreO.value);
+};
+
+const emisor = () => {
+  emit('botonClic');
 }
 
 

@@ -1,5 +1,5 @@
   <template>
-    <div class="et">
+    <div class="et" v-show="mostrar">
         <div class="title">
             <h4>Ganaste! Wazzzaaa 👻</h4>
         </div>
@@ -7,11 +7,29 @@
             <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg"><path d="M15.002 1.147 32 18.145 48.998 1.147a3 3 0 0 1 4.243 0l9.612 9.612a3 3 0 0 1 0 4.243L45.855 32l16.998 16.998a3 3 0 0 1 0 4.243l-9.612 9.612a3 3 0 0 1-4.243 0L32 45.855 15.002 62.853a3 3 0 0 1-4.243 0L1.147 53.24a3 3 0 0 1 0-4.243L18.145 32 1.147 15.002a3 3 0 0 1 0-4.243l9.612-9.612a3 3 0 0 1 4.243 0Z" fill="#31C3BD" fill-rule="evenodd"/></svg>            <h1>Tomo la partida</h1>
         </div>
         <div class="btns">
-            <button class="quitar">Quitar</button>
-            <button class="siguiente">Siguiente ronda</button>
+            <button class="quitar" @click="recargar">Quitar</button>
+            <button class="siguiente" @click="jugar">Siguiente ronda</button>
         </div>
     </div>
   </template>
+
+<script setup>
+import {ref} from 'vue'
+
+var mostrar = ref(true)
+
+const jugar = () =>{
+    if (mostrar.value === true){
+        mostrar.value = false
+        console.log("funcionando")
+    }
+}
+
+const recargar = () =>{
+    location.reload();
+}
+
+</script>
 
 <style scoped>
 .et{

@@ -7,13 +7,31 @@
         </div>
         <div class="turno">
             <!--Cambiar X por el turno que es-->
-            <h1> X </h1><p>Turno</p>
+            <h1> {{ title }} </h1><p>Turno</p>
         </div>
         <div class="btn-restart">
-            <button></button>
+            <button @click="emisor()"></button>
         </div>
     </div>
 </template>
+
+<script setup>
+import {defineProps, defineEmits} from 'vue'
+
+defineProps({
+    title:{
+        typeof: String,
+        default: 'X'
+    }
+})
+
+var mensaje = defineEmits(['limpiarbtns'])
+const emisor = () =>{
+    mensaje ('limpiarbtns')
+    console.log('señar de reset mandad')
+}
+
+</script>
 
 
 <style scoped>
