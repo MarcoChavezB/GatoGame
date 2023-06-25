@@ -1,5 +1,5 @@
 <template>
-    <div class="app" v-show="ocultarMenu">
+    <div class="app" v-show="ocultarMenu" :class="{'animacionSalida':animacionSalida}">
         
         <div class="XO">
             <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg"><path d="M15.002 1.147 32 18.145 48.998 1.147a3 3 0 0 1 4.243 0l9.612 9.612a3 3 0 0 1 0 4.243L45.855 32l16.998 16.998a3 3 0 0 1 0 4.243l-9.612 9.612a3 3 0 0 1-4.243 0L32 45.855 15.002 62.853a3 3 0 0 1-4.243 0L1.147 53.24a3 3 0 0 1 0-4.243L18.145 32 1.147 15.002a3 3 0 0 1 0-4.243l9.612-9.612a3 3 0 0 1 4.243 0Z" fill="#31C3BD" fill-rule="evenodd"/></svg>
@@ -20,7 +20,6 @@
         
         <div class="btns">
             <button @click="ocultar(false); emisor(); mandarNombres()">Continuar</button>
-            
         </div>
     </div>
 </template>
@@ -29,11 +28,21 @@
 import {ref} from 'vue'
 import {defineEmits} from 'vue'
 
-const ocultarMenu = ref(true);
+const ocultarMenu = ref(true)
+var animacionSalida = ref(false)
+
+const animacion = () => {
+    animacionSalida.value = true
+}
 
 const ocultar = () =>{
+
     if (ocultarMenu.value === true) {
-        ocultarMenu.value = false
+        animacion()
+        setTimeout(() => {
+            ocultarMenu.value = false    
+        }, 350);
+        
     }
 }
 
@@ -57,11 +66,33 @@ const emisor = () => {
 </script>
 
 <style scoped>
+
+
+.app{
+    animation:scale-up-center 1.0s; 
+} 
+@keyframes scale-up-center{ 
+
+    0%{transform:scale(0)} 
+    100%{transform:scale(1)} 
+}
+
+.animacionSalida{
+    animation:scale-down-center 0.4s;
+} 
+@keyframes scale-down-center{
+    0%{transform:scale(1)}
+    100%{transform:scale(0.1)}
+}
+
+
+
 .app{
     display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .title h1 {
     color: #a8bfc9;
 }
@@ -88,14 +119,20 @@ const emisor = () => {
     padding: 10px;
     border-radius: 10px;
     background: #10212a;
+
 }
 
 .inputs input:last-child{
     background-color: #f2b137;
+    text-transform: uppercase;
+
 }
 .inputs input:first-child{
     background-color: #31c3bd;
+    text-transform: uppercase;
+
 }
+
 input {
     width: 14em;
     height: 40px;

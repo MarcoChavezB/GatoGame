@@ -6,7 +6,7 @@
 
 <script setup>
 import {defineProps, ref, defineEmits} from 'vue'
-
+const animacion = ref (false)
 defineProps({
     texto:{
         type:String,
@@ -20,7 +20,6 @@ defineProps({
 
 })
 
-const animacion = ref (false)
 const animacionEvent = (posicion) => {
   console.log('btn clic', posicion)
   animacion.value = true;
@@ -51,7 +50,6 @@ button {
   display: flex;
   height: 180px;
   justify-content: center;
-  margin: .5em .5rem .5rem;
   width: 180px;
   outline: none;
   border: none;
@@ -59,11 +57,12 @@ button {
   color: white;
   position: relative;
   opacity: 0,5;
+  font-size: 5em;
 }
 
-
 .active {
-    animation:animacion 0.4s ease-in-out both 
+    animation:animacion 0.4s ease-in-out both; 
+    color: #31c3bd;
 } 
     
     @keyframes animacion{

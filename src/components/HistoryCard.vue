@@ -51,6 +51,7 @@ defineProps({
 <style setuo>
 .his{
     display: flex;
+    text-transform: uppercase;
 }
 .playerX {
     background-color: #31c3bd;
@@ -92,7 +93,7 @@ p{
     font-size: 15px;
     font-weight: medium;
     margin: .8rem 0 0; 
-    font-family: Outfit,sans-serif;
+    font-family: 'Rowdies', cursive;
 }
 
 h4 {
